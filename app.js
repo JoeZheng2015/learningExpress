@@ -1,18 +1,27 @@
-var wechat = require('wechat');
+const wechat = require('wechat')
 const express = require('express')
 
 const app = express()
-var config = {
+const config = {
   token: 'wechat',
   appid: 'wxb71708e8fc08e734',
   encodingAESKey: 'RSmS09Xf7H2MzxhoGehEkeqwbCUjJu1wjsuPmQk8P7V',
-  checkSignature: true // 可选，默认为true。由于微信公众平台接口调试工具在明文模式下不发送签名，所以如要使用该测试工具，请将其设置为false
 };
 
-app.use(express.query());
+// 在微信公众平台的开发->基本配置->URL(服务器地址)下填入该url
+// eg:https://28718514.qcloud.la/wechat
 app.use('/wechat', wechat(config, function (req, res, next) {
   // 微信输入信息都在req.weixin上
-  var message = req.weixin;
+  // req.weixin = {
+  //  ToUserName,
+  //  FromUserName,
+  //  CreateTime,
+  //  MsgType,
+  //  Content,
+  //  MsgId,
+  // }
+  const message = req.weixin
+  res.reply(message.Content)
   if (message.FromUserName === 'diaosi') {
     // 回复屌丝(普通回复)
     res.reply('hehe');
@@ -47,6 +56,6 @@ app.use('/wechat', wechat(config, function (req, res, next) {
   }
 }));
 
-app.listen(80, () => {
-  console.log('qidong')
+app.listen(8080, () => {
+  console.log('服务已启动')
 })
