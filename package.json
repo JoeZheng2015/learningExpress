@@ -19,8 +19,8 @@
   "homepage": "https://github.com/JoeZheng2015/learningExpress#readme",
   "dependencies": {
     "express": "^4.15.2",
-    "node-wechat": "^0.3.0",
     "request": "^2.81.0",
-    "request-promise": "^4.2.0"
+    "request-promise": "^4.2.0",
+    "wechat": "^2.1.0"
   }
 }
