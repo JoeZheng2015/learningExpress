@@ -22,17 +22,14 @@ app.use('/wechat', wechat(config, function (req, res, next) {
   // }
   const message = req.weixin
   res.reply(message.Content)
-  if (message.FromUserName === 'diaosi') {
-    // 回复屌丝(普通回复)
-    res.reply('hehe');
-  } else if (message.FromUserName === 'text') {
-    //你也可以这样回复text类型的信息
+
+  if (message.Content === '文本对象') {
     res.reply({
-      content: 'text object',
+      content: '文本对象',
       type: 'text'
-    });
-  } else if (message.FromUserName === 'hehe') {
-    // 回复一段音乐
+    })
+  }
+  else if (message.Content === '音乐') {
     res.reply({
       type: "music",
       content: {
@@ -42,9 +39,9 @@ app.use('/wechat', wechat(config, function (req, res, next) {
         hqMusicUrl: "http://mp3.com/xx.mp3",
         thumbMediaId: "thisThumbMediaId"
       }
-    });
-  } else {
-    // 回复高富帅(图文回复)
+    })
+  }
+  else if (message.Content === '图文') {
     res.reply([
       {
         title: '你来我家接我吧',
@@ -52,7 +49,10 @@ app.use('/wechat', wechat(config, function (req, res, next) {
         picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
         url: 'http://nodeapi.cloudfoundry.com/'
       }
-    ]);
+    ])
+  }
+  else {
+    res.reply(message.Content)
   }
 }));
 
