@@ -18,9 +18,14 @@
   },
   "homepage": "https://github.com/JoeZheng2015/learningExpress#readme",
   "dependencies": {
+    "axios": "^0.16.2",
+    "errorhandler": "^1.5.0",
     "express": "^4.15.2",
     "request": "^2.81.0",
     "request-promise": "^4.2.0",
     "wechat": "^2.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
